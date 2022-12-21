@@ -97,11 +97,11 @@ function _M.execute(conf)
     return
   end
 
-  ok, err = sock:setkeepalive(conf.keepalive)
-  if not ok then
-    ngx.log(ngx.ERR, name .. "failed to keepalive to " .. host .. ":" .. tostring(port) .. ": ", err)
-    return
-  end
+  --ok, err = sock:setkeepalive(conf.keepalive)
+  --if not ok then
+  --  ngx.log(ngx.ERR, name .. "failed to keepalive to " .. host .. ":" .. tostring(port) .. ": ", err)
+  --  return
+  --end
 
   if status_code > 299 then
     if err then 
