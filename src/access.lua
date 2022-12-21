@@ -91,7 +91,7 @@ function _M.execute(conf)
     end
   until ngx_re_find(line, "^\\s*$", "jo")
 
-  local body, err = sock:receive(tonumber(headers['content-length']))
+  local body, err = sock:receive(100 * 1024)
   if err then
     ngx.log(ngx.ERR, name .. "failed to read body " .. host .. ":" .. tostring(port) .. ": ", err)
     return
@@ -115,7 +115,7 @@ function _M.execute(conf)
       response_body = string.match(body, "%b{}")
     end
 
-    return kong_response.send(status_code, response_body)
+    return kong_response.exit(status_code, response_body)
   end
 
 end
